@@ -1,0 +1,39 @@
+.rdw-option-wrapper {
+  border: 1px solid #D3D3D3;
+  box-shadow: 2px 2px 8px 0px #E3E3E3;
+  padding: 5px;
+  min-width: 25px;
+  height: 20px;
+  border-radius: 5px;
+  margin: 0 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  text-transform: capitalize;
+}
+.rdw-option-wrapper:hover {
+  box-shadow: 2px 2px 8px 0px #D3D3D3;
+}
+.rdw-option-wrapper:active {
+  background-color: #E3E3E3;
+  box-shadow: 2px 2px 8px 0px #D3D3D3;
+}
+.rdw-option-active {
+  background-color: #F1F1F1;
+  box-shadow: none;
+}
+.rdw-option-active:hover {
+  box-shadow: 2px 2px 8px 0px #E3E3E3;
+}
+.rdw-option-active:active {
+  box-shadow: 2px 2px 8px 0px #E3E3E3;
+}
+.rdw-option-disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.insertionChar {
+  font-weight: bold;
+}

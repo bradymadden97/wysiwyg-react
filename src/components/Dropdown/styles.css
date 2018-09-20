@@ -1,0 +1,64 @@
+.rdw-dropdown-wrapper {
+  height: 30px;
+  background-color: white;
+  box-shadow: 2px 2px 8px 0px #E3E3E3;
+  cursor: pointer;
+  border: 1px solid #D3D3D3;
+  border-radius: 5px;
+  margin: 0 3px;
+  text-transform: capitalize;
+  background-color: white;
+}
+.rdw-dropdown-wrapper:focus {
+  outline: none;
+}
+.rdw-dropdown-wrapper:hover {
+  box-shadow: 2px 2px 8px 0px #D3D3D3;
+  background-color: #FFFFFF;
+}
+.rdw-dropdown-wrapper:active {
+  box-shadow: 2px 2px 8px 0px #D3D3D3;
+}
+.rdw-dropdown-carettoopen {
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  top: 35%;
+  right: 10%;
+  border-top: 6px solid black;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+.rdw-dropdown-carettoclose {
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  top: 35%;
+  right: 10%;
+  border-bottom: 6px solid black;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+.rdw-dropdown-selectedtext {
+  display: flex;
+  position: relative;
+  height: 100%;
+  align-items: center;
+  padding: 0 5px;
+}
+.rdw-dropdown-optionwrapper {
+  z-index: 100;
+  position: relative;
+  border: 1px solid #F1F1F1;
+  width: 98%;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+.rdw-dropdown-optionwrapper:hover {
+  box-shadow: 1px 1px 0px #BFBDBD;
+  background-color: #FFFFFF;
+}

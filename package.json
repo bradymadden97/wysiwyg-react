@@ -1,0 +1,20 @@
+{
+  "name": "wysiwyg-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "draft-js": "^0.10.5",
+    "draftjs-utils": "^0.9.4",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-scripts": "1.1.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "yarn build && cd build && surge --domain wysiwyg-uvaeng.surge.sh"
+  }
+}
