@@ -22,7 +22,7 @@ to your HTML file.
 
 ### Develop locally
 - All editor source code lives in the [src](src) folder. The static `index.html` file is located in [public](public).
-- Properties or functions can be passed into the `<Editor />` component from (src/index.js)[src/index.js]. One example is included, which passes an `onExport` function down from (src/index.js)[src/index.js] to the onClick event of the EXPORT button, and returns up the HTML version of the current text in the editor.
+- Properties or functions can be passed into the `<Editor />` component from [src/index.js](src/index.js). One example is included, which passes an `onExport` function down from [src/index.js](src/index.js) to the onClick event of the EXPORT button, and returns up the HTML version of the current text in the editor.
 
 ```
 ...
