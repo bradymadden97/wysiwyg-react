@@ -1,6 +1,6 @@
 ## Useage
 ### Use the editor in your site
-To include the editor in your site, include the files in the [static](/build/static) directory, and add:
+To include the editor in your site, include the files in the [static](build/static) directory, and add:
 ```
 <div id="react-editor-root"></div>
 ```
@@ -21,7 +21,7 @@ to your HTML file.
 - Once all dependencies have been installed, run `yarn start` to start the development server and view the project locally in a browser at `localhost:3000`
 
 ### Develop locally
-- All editor source code lives in the [src](/src) folder. The static `index.html` file is located in [public](public).
+- All editor source code lives in the [src](src) folder. The static `index.html` file is located in [public](public).
 
 ### Test locally
 - Run `yarn start` to start the development server and view the project locally in a browser at `localhost:3000`
