@@ -76,7 +76,8 @@ export default class WysiwygEditor extends Component {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
-    editorRef: PropTypes.func
+    editorRef: PropTypes.func,
+    onExport: PropTypes.func
   };
 
   static defaultProps = {
@@ -444,7 +445,8 @@ export default class WysiwygEditor extends Component {
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,
-      onChange: this.onChange
+      onChange: this.onChange,
+      onExport: this.props.onExport
     };
     const toolbarShow =
       editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;

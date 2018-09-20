@@ -4,6 +4,7 @@ import fontSize from './FontSize';
 import textAlign from './TextAlign';
 import history from './History';
 import insertion from './Insertion';
+import submission from './Submission'
 
 const Controls = {
   inline,
@@ -12,6 +13,7 @@ const Controls = {
   textAlign,
   history,
   insertion,
+  submission,
 };
 
 export default Controls;

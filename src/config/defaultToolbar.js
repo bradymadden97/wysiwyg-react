@@ -14,7 +14,7 @@ import redo from '../icons/redo.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'textAlign', 'history', 'insertion'],
+  options: ['inline', 'blockType', 'fontSize', 'textAlign', 'history', 'insertion', 'submission'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -75,6 +75,15 @@ export default {
     rapostrophe: {className: 'insertionChar', title: undefined, value: '\u2019'},
     lquotation: {className: 'insertionChar', title: undefined, value: '\u201C'},
     rquotation: {className: 'insertionChar', title: undefined, value: '\u201D'},
+    title: undefined
+  },
+  submission: {
+    inDropdown: false,
+    className: undefined,
+    component: undefined,
+    dropdownClassName: undefined,
+    options: ['export'],
+    export: {className: 'exportBtn', title: undefined, value: "EXPORT"},
     title: undefined
   }
 };
