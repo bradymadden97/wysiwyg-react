@@ -4,15 +4,22 @@ import './index.css';
 import Editor from './Editor';
 import registerServiceWorker from './registerServiceWorker';
 
-function onExport(markup: string) {
+function _onExport(markup: string) {
   /* ACCESS EXPORT BUTTON HERE */
+  for(var i = 0; i < string.length; i++){
+	  console.log(markup.charCodeAt(i);
+  }
   window.alert(markup);
 }
 
-ReactDOM.render(
-  <Editor
-    onExport={onExport}
-  />,
-  document.getElementById('react-editor-root')
-);
+const roots = Array.prototype.slice.call(document.getElementsByClassName('react-editor-root'));
+roots.forEach((elem) => {
+	ReactDOM.render(
+		<Editor
+			onExport={_onExport}
+		/>,
+		elem
+	);
+});
+
 registerServiceWorker();

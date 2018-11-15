@@ -45,6 +45,14 @@
   height: 100%;
   align-items: center;
   padding: 0 5px;
+  
+}
+button.rdw-dropdown-selectedtext {
+    background-color: #fff0;
+	border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
 }
 .rdw-dropdown-optionwrapper {
   z-index: 100;
@@ -62,3 +70,8 @@
   box-shadow: 1px 1px 0px #BFBDBD;
   background-color: #FFFFFF;
 }
+a {
+  color: #000;
+  text-decoration: none;
+}
+  

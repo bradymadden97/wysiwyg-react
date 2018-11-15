@@ -74,10 +74,11 @@ export default class Dropdown extends Component {
         aria-expanded={expanded}
         aria-label={ariaLabel || 'rdw-dropdown'}
       >
-        <a
+        <button
           className="rdw-dropdown-selectedtext"
           onClick={onExpandEvent}
           title={title}
+		  href="#"
         >
           {children[0]}
           <div
@@ -86,7 +87,7 @@ export default class Dropdown extends Component {
               'rdw-dropdown-carettoopen': !expanded,
             })}
           />
-        </a>
+        </button>
         {expanded ?
           <ul
             className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)}

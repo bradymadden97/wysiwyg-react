@@ -2,7 +2,7 @@
 ### Use the editor in your site
 To include the editor in your site, include the files in the [static](build/static) directory, and add:
 ```
-<div id="react-editor-root"></div>
+<div class="react-editor-root"></div>
 ```
 to your HTML file.
 
@@ -27,7 +27,7 @@ to your HTML file.
 ```
 ...
 
-function onExport(markup: string) {
+function _onExport(markup: string) {
   /* Manipulate returned HTML markup as needed */
   window.alert(markup);
 }
@@ -35,7 +35,7 @@ function onExport(markup: string) {
 /* Pass the function above down into the Editor component */
 ReactDOM.render(
   <Editor
-    onExport={onExport}
+    onExport={_onExport}
 
 ...
 ```
