@@ -6,9 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 function _onExport(markup: string) {
   /* ACCESS EXPORT BUTTON HERE */
-  for(var i = 0; i < string.length; i++){
-	  console.log(markup.charCodeAt(i);
-  }
   window.alert(markup);
 }
 
