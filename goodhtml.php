@@ -10,8 +10,13 @@
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <form action="/checkanswer.php" method="post">
+    <textarea name="wrongtext" rows="5" cols="60"><?php echo $wrongtext;?></textarea>
+    <br><br>
+    <input type="submit">
+    </form>
+    
     <div id="container">
-        <div class="react-editor-root"></div>
         <div class="react-editor-root"></div>
     </div>
     <script>
