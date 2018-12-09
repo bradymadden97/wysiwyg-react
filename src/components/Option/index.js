@@ -25,23 +25,43 @@ export default class Option extends Component {
   };
 
   render() {
-    const { children, className, activeClassName, active, disabled, title } = this.props;
-    return (
-      <div
-        className={classNames(
-          'rdw-option-wrapper',
-          className,
-          {
-            [`rdw-option-active ${activeClassName}`]: active,
-            'rdw-option-disabled': disabled,
-          },
-        )}
-        onClick={this.onClick}
-        aria-selected={active}
-        title={title}
-      >
-        {children}
-      </div>
-    );
+    const { children, className, activeClassName, active, disabled, title, type } = this.props;
+	if (type === "submit") {
+		return (
+			  <button
+				type="submit"
+				className={classNames(
+				  'rdw-option-wrapper',
+				  className,
+				  {
+					[`rdw-option-active ${activeClassName}`]: active,
+					'rdw-option-disabled': disabled,
+				  },
+				)}
+				onClick={this.onClick}
+				title={title}
+			  >
+				{children}
+			  </button>
+			);
+	} else {
+		return (
+			  <div
+				className={classNames(
+				  'rdw-option-wrapper',
+				  className,
+				  {
+					[`rdw-option-active ${activeClassName}`]: active,
+					'rdw-option-disabled': disabled,
+				  },
+				)}
+				onClick={this.onClick}
+				aria-selected={active}
+				title={title}
+			  >
+				{children}
+			  </div>
+			);
+	}
   }
 }

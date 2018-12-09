@@ -22,7 +22,7 @@ export default class Submission extends Component {
     const { config, onClick } = this.props;
     return (
       <div className={classNames('rdw-submission-wrapper', config.className)} aria-label="rdw-inline-control">
-        {
+        {		
           config.options
             .map((style, index) =>
               (<Option
@@ -32,6 +32,7 @@ export default class Submission extends Component {
                 className={classNames(config[style].className)}
                 active={false}
                 title={config[style].title}
+				type={config[style].type}
               >
                 {config[style].icon ?
                   (<img

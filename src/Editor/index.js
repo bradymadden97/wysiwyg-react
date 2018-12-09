@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import {
   Editor,
   EditorState,
+  ContentState,
   RichUtils,
   convertToRaw,
   convertFromRaw,
@@ -32,6 +33,8 @@ import getBlockRenderFunc from "../renderer";
 import defaultToolbar from "../config/defaultToolbar";
 import "./styles.css";
 import "./Draft.css";
+import draftToHtml from 'draftjs-to-html';
+import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor';
 
 export default class WysiwygEditor extends Component {
   static propTypes = {
@@ -77,14 +80,16 @@ export default class WysiwygEditor extends Component {
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
     editorRef: PropTypes.func,
-    onExport: PropTypes.func
+    onExport: PropTypes.func,
+	initialText: PropTypes.string
   };
 
   static defaultProps = {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
-    customDecorators: []
+    customDecorators: [],
+	initialText: ""
   };
 
   constructor(props) {
@@ -116,7 +121,15 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     this.compositeDecorator = this.getCompositeDecorator();
-    const editorState = this.createEditorState(this.compositeDecorator);
+	let editorState;
+	if (this.props.initialText) {
+		const processedHTML = DraftPasteProcessor.processHTML(this.props.initialText);
+		const contentState = ContentState.createFromBlockArray(processedHTML);
+		editorState = EditorState.createWithContent(contentState);
+        editorState = EditorState.moveFocusToEnd(editorState);
+    } else {
+		editorState = this.createEditorState(this.compositeDecorator);
+	}
     extractInlineStyle(editorState);
     this.setState({
       editorState
@@ -125,6 +138,7 @@ export default class WysiwygEditor extends Component {
 
   componentDidMount(): void {
     this.modalHandler.init(this.wrapperId);
+	this.editor.focus();
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -227,6 +241,7 @@ export default class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
+	
     if (
       !readOnly &&
       !(
@@ -243,6 +258,9 @@ export default class WysiwygEditor extends Component {
         this.afterChange(editorState);
       }
     }
+	
+    const markup = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+	document.getElementById("hiddentextareaanswer").value = markup;
   };
 
   setWrapperReference: Function = (ref: Object): void => {
@@ -425,6 +443,22 @@ export default class WysiwygEditor extends Component {
       event.preventDefault();
     }
   };
+  
+  onReset = () => {        
+	let newContentState;
+    if (this.props.initialText) {
+        const processedHTML = DraftPasteProcessor.processHTML(this.props.initialText);
+        newContentState = ContentState.createFromBlockArray(processedHTML);
+    }
+    else {
+		newContentState = ContentState.createFromText('');
+    }
+	
+	let newEditorState = EditorState.push(this.state.editorState, newContentState);
+	newEditorState = EditorState.moveFocusToEnd(newEditorState);
+	this.setState({editorState: newEditorState});
+
+  }
 
   render() {
     const { editorState, editorFocused, toolbar } = this.state;
@@ -446,83 +480,86 @@ export default class WysiwygEditor extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
-      onExport: this.props.onExport
+      onExport: this.props.onExport,
+	  onReset: this.onReset,
     };
     const toolbarShow =
       editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;
     return (
-      <div
-        id={this.wrapperId}
-        className={classNames(wrapperClassName, "rdw-editor-wrapper")}
-        style={wrapperStyle}
-        onClick={this.modalHandler.onEditorClick}
-        onBlur={this.onWrapperBlur}
-        aria-label="rdw-wrapper"
-      >
-        {!toolbarHidden && (
-            <div
-              className={classNames("rdw-editor-toolbar", toolbarClassName)}
-              style={{
-                visibility: toolbarShow ? "visible" : "hidden",
-                ...toolbarStyle
-              }}
-              onMouseDown={this.preventDefault}
-              aria-label="rdw-toolbar"
-              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-              onFocus={this.onToolbarFocus}
-            >
-              {toolbar.options.map((opt, index) => {
-                const Control = Controls[opt];
-                const config = toolbar[opt];
-                if (opt === "image" && uploadCallback) {
-                  config.uploadCallback = uploadCallback;
-                }
-                const ControlBlock = <Control key={index} {...controlProps} config={config} />;
-                if (opt === 'insertion') {
-                  return (
-                    <div key={index + "div"} className={"rdw-insertion-container"}>
-                      {ControlBlock}
-                    </div>
-                  );
-                }
-                return ControlBlock;
-              })}
-              {toolbarCustomButtons &&
-                toolbarCustomButtons.map((button, index) =>
-                  React.cloneElement(button, { key: index, ...controlProps })
-                )}
-            </div>
+		<>
+		  <div
+			id={this.wrapperId}
+			className={classNames(wrapperClassName, "rdw-editor-wrapper")}
+			style={wrapperStyle}
+			onClick={this.modalHandler.onEditorClick}
+			onBlur={this.onWrapperBlur}
+			aria-label="rdw-wrapper"
+		  >
+			{!toolbarHidden && (
+				<div
+				  className={classNames("rdw-editor-toolbar", toolbarClassName)}
+				  style={{
+					visibility: toolbarShow ? "visible" : "hidden",
+					...toolbarStyle
+				  }}
+				  onMouseDown={this.preventDefault}
+				  aria-label="rdw-toolbar"
+				  aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+				  onFocus={this.onToolbarFocus}
+				>
+				  {toolbar.options.map((opt, index) => {
+					const Control = Controls[opt];
+					const config = toolbar[opt];
+					if (opt === "image" && uploadCallback) {
+					  config.uploadCallback = uploadCallback;
+					}
+					const ControlBlock = <Control key={index} {...controlProps} config={config} />;
+					if (opt === 'insertion') {
+					  return (
+						<div key={index + "div"} className={"rdw-insertion-container"}>
+						  {ControlBlock}
+						</div>
+					  );
+					}
+					return ControlBlock;
+				  })}
+				  {toolbarCustomButtons &&
+					toolbarCustomButtons.map((button, index) =>
+					  React.cloneElement(button, { key: index, ...controlProps })
+					)}
+				</div>
 
-        )}
-        <div
-          ref={this.setWrapperReference}
-          className={classNames(editorClassName, "rdw-editor-main")}
-          style={editorStyle}
-          onClick={this.focusEditor}
-          onFocus={this.onEditorFocus}
-          onBlur={this.onEditorBlur}
-          onKeyDown={KeyDownHandler.onKeyDown}
-          onMouseDown={this.onEditorMouseDown}
-        >
-          <Editor
-            ref={this.setEditorReference}
-            onTab={this.onTab}
-            onUpArrow={this.onUpDownArrow}
-            onDownArrow={this.onUpDownArrow}
-            editorState={editorState}
-            onChange={this.onChange}
-            blockStyleFn={blockStyleFn}
-            customStyleMap={getCustomStyleMap()}
-            handleReturn={this.handleReturn}
-            handlePastedText={this.handlePastedText}
-            blockRendererFn={this.blockRendererFn}
-            handleKeyCommand={this.handleKeyCommand}
-            ariaLabel={ariaLabel || "rdw-editor"}
-            blockRenderMap={blockRenderMap}
-            {...this.editorProps}
-          />
-        </div>
-      </div>
+			)}
+			<div
+			  ref={this.setWrapperReference}
+			  className={classNames(editorClassName, "rdw-editor-main")}
+			  style={editorStyle}
+			  onClick={this.focusEditor}
+			  onFocus={this.onEditorFocus}
+			  onBlur={this.onEditorBlur}
+			  onKeyDown={KeyDownHandler.onKeyDown}
+			  onMouseDown={this.onEditorMouseDown}
+			>
+			  <Editor
+				ref={this.setEditorReference}
+				onTab={this.onTab}
+				onUpArrow={this.onUpDownArrow}
+				onDownArrow={this.onUpDownArrow}
+				editorState={editorState}
+				onChange={this.onChange}
+				blockStyleFn={blockStyleFn}
+				customStyleMap={getCustomStyleMap()}
+				handleReturn={this.handleReturn}
+				handlePastedText={this.handlePastedText}
+				blockRendererFn={this.blockRendererFn}
+				handleKeyCommand={this.handleKeyCommand}
+				ariaLabel={ariaLabel || "rdw-editor"}
+				blockRenderMap={blockRenderMap}
+				{...this.editorProps}
+			  />
+			</div>
+		  </div>
+	  </>
     );
   }
 }

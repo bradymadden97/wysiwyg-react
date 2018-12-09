@@ -79,6 +79,7 @@ export default class Dropdown extends Component {
           onClick={onExpandEvent}
           title={title}
 		  href="#"
+		  type="button"
         >
           {children[0]}
           <div

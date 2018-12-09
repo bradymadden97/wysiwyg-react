@@ -40,3 +40,7 @@
 .rdw-insertion-container {
   width: 100%;
 }
+
+textarea {
+	display: none;
+}
