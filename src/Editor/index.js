@@ -139,6 +139,8 @@ export default class WysiwygEditor extends Component {
   componentDidMount(): void {
     this.modalHandler.init(this.wrapperId);
 	this.editor.focus();
+	const markup = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
+	document.getElementById("hiddentextareaanswer").value = markup;
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
