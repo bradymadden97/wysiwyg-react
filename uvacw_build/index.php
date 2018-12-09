@@ -24,7 +24,7 @@ $initialValue = "";
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <form action="/checkanswer.php" method="post">
+    <form action="checkanswer.php" method="post">
         <textarea id="hiddentextareaanswer" name="answer"></textarea>
         <div id="container">
             <div class="react-editor-root"></div>
