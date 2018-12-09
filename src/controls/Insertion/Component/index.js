@@ -37,7 +37,7 @@ export default class Insertion extends Component {
                   (<img
                     alt=""
                     src={config[style].icon}
-                  />) : config[style].value
+                  />) : config[style].title
                 }
               </Option>),
             )

@@ -12,6 +12,7 @@ export default class Submission extends Component {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
     onExport: PropTypes.func,
+	onReset: PropTypes.func,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
@@ -39,16 +40,20 @@ export default class Submission extends Component {
     this.signalExpanded = false;
   }
 
-  convertAndSubmit: Function = (): void => {
-    const { editorState, onExport } = this.props;
-    const rawContentState = convertToRaw(editorState.getCurrentContent());
+  onClick: Function = (btn): void => {
+	const { editorState, onExport, onReset } = this.props;
+	if (btn === "Submit") {
+		const rawContentState = convertToRaw(editorState.getCurrentContent());
 
-    const markup = draftToHtml(
-      rawContentState,
-    );
-    if (onExport) {
-      onExport(markup);
-    }
+		const markup = draftToHtml(
+		  rawContentState,
+		);
+		if (onExport) {
+		  onExport(markup);
+		}
+	} else if (btn === "Reset") {
+		onReset();		
+	}
   }
 
   doExpand: Function = (): void => {
@@ -74,7 +79,7 @@ export default class Submission extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        onClick={this.convertAndSubmit}
+        onClick={this.onClick}
       />
     );
   }

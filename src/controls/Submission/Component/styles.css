@@ -4,11 +4,28 @@
   border-color: #FFC966;
   padding-right: 10px;
   padding-left: 10px;
+  display: inline-block;
+  margin-right: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  height: auto;
+  width: 80px;
+  text-align: center;
+  font-size: 16px;
 }
 .exportBtn:active {
   background-color: #FFC04C;
 }
+.resetBtn {
+	display: inline-block;
+	margin-right: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	height: auto;
+	width: 60px;
+	text-align: center;
+}
 .rdw-submission-wrapper {
   margin-bottom: 6px;
-  display: inline;
+  flex: 1;
 }

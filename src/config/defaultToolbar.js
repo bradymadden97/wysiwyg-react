@@ -20,7 +20,7 @@ export default {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['bold', 'italic', 'underline', 'monospace'],
+    options: ['bold', 'italic', 'underline'],
     bold: { icon: bold, className: undefined, title: undefined },
     italic: { icon: italic, className: undefined, title: undefined },
     underline: { icon: underline, className: undefined, title: undefined },
@@ -69,12 +69,12 @@ export default {
     component: undefined,
     dropdownClassName: undefined,
     options: ['emdash', 'endash', 'lapostrophe', 'rapostrophe', 'lquotation', 'rquotation'],
-    emdash: {className: 'insertionChar', title: undefined, value: '\u2014'},
-    endash: {className: 'insertionChar', title: undefined, value: '\u2013'},
-    lapostrophe: {className: 'insertionChar', title: undefined, value: '\u2018'},
-    rapostrophe: {className: 'insertionChar', title: undefined, value: '\u2019'},
-    lquotation: {className: 'insertionChar', title: undefined, value: '\u201C'},
-    rquotation: {className: 'insertionChar', title: undefined, value: '\u201D'},
+    emdash: {className: 'insertionChar underline', title: 'EM', value: '\u2014'},
+    endash: {className: 'insertionChar underline', title: 'EN', value: '\u2013'},
+    lapostrophe: {className: 'insertionChar', title: '\u2018', value: '\u2018'},
+    rapostrophe: {className: 'insertionChar', title: '\u2019', value: '\u2019'},
+    lquotation: {className: 'insertionChar', title: '\u201C', value: '\u201C'},
+    rquotation: {className: 'insertionChar', title: '\u201D', value: '\u201D'},
     title: undefined
   },
   submission: {
@@ -82,8 +82,9 @@ export default {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ['export'],
-    export: {className: 'exportBtn', title: undefined, value: "EXPORT"},
+    options: ['export', 'reset'],
+    export: {className: 'exportBtn', title: undefined, value: "Submit", type: "submit"},
+	reset: {className: 'resetBtn', title: undefined, value: "Reset", type: undefined},
     title: undefined
   }
 };
