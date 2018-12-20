@@ -5,26 +5,20 @@ $initialValue = "";
 
 ?>
 
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>CMS Test</title>
-    <style>
-        textarea {
-            display: none
-        }
-    </style>
-    <link href="static/main.746833b5.chunk.css" rel="stylesheet">
-	<script>
-		let initialValue = "<?php echo $initialValue; ?>";
-	</script>
+    <link href="static/main.b23c1f8f.chunk.css" rel="stylesheet">
+	<script>let initialValue = "<?php echo $initialValue; ?>";</script>
 </head>
 
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <form action="/checkanswer.php" method="post">
+    <form action="checkanswer.php" method="post">
         <textarea id="hiddentextareaanswer" name="answer"></textarea>
         <div id="container">
             <div class="react-editor-root"></div>
@@ -105,8 +99,8 @@ $initialValue = "";
             a()
         }([])
     </script>
-    <script src="static/1.9b8e03d4.chunk.js"></script>
-    <script src="static/main.84b61155.chunk.js"></script>
+    <script src="static/1.11a59f7f.chunk.js"></script>
+    <script src="static/main.e93ceeb3.chunk.js"></script>
 </body>
 
 </html>

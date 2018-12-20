@@ -11,15 +11,8 @@ $initialValue = "";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>CMS Test</title>
-    <style>
-        textarea {
-            display: none
-        }
-    </style>
-    <link href="static/main.746833b5.chunk.css" rel="stylesheet">
-	<script>
-		let initialValue = "<?php echo $initialValue; ?>";
-	</script>
+    <link href="static/main.b23c1f8f.chunk.css" rel="stylesheet">
+	<script>let initialValue = "<?php echo $initialValue; ?>";</script>
 </head>
 
 <body>
@@ -105,8 +98,8 @@ $initialValue = "";
             a()
         }([])
     </script>
-    <script src="static/1.9b8e03d4.chunk.js"></script>
-    <script src="static/main.84b61155.chunk.js"></script>
+    <script src="static/1.11a59f7f.chunk.js"></script>
+    <script src="static/main.e93ceeb3.chunk.js"></script>
 </body>
 
 </html>

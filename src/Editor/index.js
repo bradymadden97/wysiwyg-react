@@ -515,14 +515,14 @@ export default class WysiwygEditor extends Component {
 					if (opt === "image" && uploadCallback) {
 					  config.uploadCallback = uploadCallback;
 					}
-					const ControlBlock = <Control key={index} {...controlProps} config={config} />;
-					if (opt === 'insertion') {
-					  return (
-						<div key={index + "div"} className={"rdw-insertion-container"}>
-						  {ControlBlock}
-						</div>
-					  );
+					
+					let ControlBlock;
+					if (opt === "inline" || opt === "submission" ) {
+						ControlBlock = <div key={index} className={classNames("rdw-control-container")}><Control key={index} {...controlProps} config={config} /></div>;
+					} else {
+						ControlBlock = <div key={index} ><Control key={index} {...controlProps} config={config} /></div>;
 					}
+					
 					return ControlBlock;
 				  })}
 				  {toolbarCustomButtons &&
